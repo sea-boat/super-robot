@@ -1,6 +1,5 @@
 package com.seaboat.robot;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -10,15 +9,31 @@ import bitoflife.chatterbean.parser.AliceBotParserConfigurationException;
 import bitoflife.chatterbean.parser.AliceBotParserException;
 import bitoflife.chatterbean.util.Searcher;
 
-public class StandardEngine implements Engine {
+/**
+ * 
+ * <pre><b>SuperRobot's engine,this engine contains AliceBot and AbilityBot. </b></pre>
+ * @author 
+ * <pre>seaboat</pre>
+ * <pre><b>email: </b>849586227@qq.com</pre>
+ * <pre><b>blog: </b>http://blog.csdn.net/wangyangzhizhou</pre>
+ * @version 0.1
+ */
+public class SuperEngine implements Engine {
 
-	public AliceBot bot;
+	private AliceBot bot;
 
-	public AbilityBot abilityBot;
+	private AbilityBot abilityBot;
 
-	public StandardEngine() {
+	private SessionManager manager;
+
+	public SuperEngine() {
 		initAliceBot();
 		initAbilityBot();
+		initSessionManager();
+	}
+
+	private void initSessionManager() {
+		manager = SessionManager.getInstance();
 	}
 
 	private void initAbilityBot() {
@@ -31,8 +46,8 @@ public class StandardEngine implements Engine {
 		try {
 			AliceBotParser parser = new AliceBotParser();
 			bot = parser.parse(
-					this.getClass()
-							.getResourceAsStream("/resources/context.xml"),
+					this.getClass().getResourceAsStream(
+							"/resources/context.xml"),
 					this.getClass().getResourceAsStream(
 							"/resources/splitters.xml"),
 					this.getClass().getResourceAsStream(

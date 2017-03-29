@@ -19,6 +19,15 @@ import com.seaboat.robot.ability.Ability;
 import com.seaboat.robot.ability.DateAbility;
 import com.seaboat.robot.ability.index.IndexUtil;
 
+/**
+ * 
+ * <pre><b>AbilityBot has all kinds of abilities. According to the input,AbilityBot will match the most similar ability. </b></pre>
+ * @author 
+ * <pre>seaboat</pre>
+ * <pre><b>email: </b>849586227@qq.com</pre>
+ * <pre><b>blog: </b>http://blog.csdn.net/wangyangzhizhou</pre>
+ * @version 0.1
+ */
 public class AbilityBot {
 
 	public Map<String, Ability> abilityMap = new HashMap<String, Ability>();

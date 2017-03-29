@@ -15,6 +15,15 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
+/**
+ * 
+ * <pre><b>Index tool. </b></pre>
+ * @author 
+ * <pre>seaboat</pre>
+ * <pre><b>email: </b>849586227@qq.com</pre>
+ * <pre><b>blog: </b>http://blog.csdn.net/wangyangzhizhou</pre>
+ * @version 0.1
+ */
 public class IndexUtil {
 
 	protected static final int MAX = 10;
