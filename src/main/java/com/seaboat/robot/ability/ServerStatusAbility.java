@@ -1,32 +1,32 @@
 package com.seaboat.robot.ability;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import com.seaboat.robot.SuperContext;
+import com.seaboat.robot.util.Constants;
 
 /**
  * 
- * <pre><b>DateAbility provides date function. </b></pre>
+ * <pre><b>ServerStatusAbility provides some functions to get server status. </b></pre>
  * @author 
  * <pre>seaboat</pre>
  * <pre><b>email: </b>849586227@qq.com</pre>
  * <pre><b>blog: </b>http://blog.csdn.net/wangyangzhizhou</pre>
  * @version 0.1
  */
-public class DateAbility implements Ability {
+public class ServerStatusAbility implements Ability {
 
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public String process() {
-		try {
-			return format.format(new java.util.Date());
-		} catch (Exception e) {
-		}
 		return null;
 	}
 
 	public String process(SuperContext context) {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> sentences = (List<String>) context.getAttributes(Constants.SENTENCES);
+		for(String s : sentences)
+			System.out.println(s);
+		return "haha";
 	}
 }

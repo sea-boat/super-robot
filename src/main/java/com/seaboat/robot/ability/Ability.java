@@ -1,4 +1,7 @@
 package com.seaboat.robot.ability;
+
+import com.seaboat.robot.SuperContext;
+
 /**
  * 
  * <pre><b>Ability interface. </b></pre>
@@ -9,5 +12,18 @@ package com.seaboat.robot.ability;
  * @version 0.1
  */
 public interface Ability {
+	/**
+	 * process request.
+	 * 
+	 * @return a response string,return null if fail to process.
+	 */
 	public String process();
+
+	/**
+	 * process request.
+	 * 
+	 * @return a response string,return null if fail to process.
+	 */
+	public String process(SuperContext context);
+
 }

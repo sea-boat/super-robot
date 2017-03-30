@@ -15,8 +15,8 @@ import java.util.Hashtable;
 public class SuperContext {
 
 	private String sessionId;
-	
-	private Hashtable userDefAttributes = new Hashtable();
+
+	private Hashtable attributes = new Hashtable();
 
 	public String getSessionId() {
 		return sessionId;
@@ -26,19 +26,19 @@ public class SuperContext {
 		this.sessionId = sessionId;
 	}
 
-	public Object getUserDefAttribute(String name) {
-		return userDefAttributes.get(name);
+	public Object getAttributes(String name) {
+		return attributes.get(name);
 	}
 
-	public Enumeration getUserDefAttributeNames() {
-		return userDefAttributes.keys();
+	public Enumeration getAttributeNames() {
+		return attributes.keys();
 	}
 
-	public void removeUserDefAttribute(String name) {
-		userDefAttributes.remove(name);
+	public void removeAttribute(String name) {
+		attributes.remove(name);
 	}
 
-	public void setUserDefAttribute(String name, Object value) {
-		userDefAttributes.put(name, value);
+	public void setAttribute(String name, Object value) {
+		attributes.put(name, value);
 	}
 }

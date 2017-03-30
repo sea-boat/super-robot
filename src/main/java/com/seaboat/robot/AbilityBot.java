@@ -17,6 +17,7 @@ import org.wltea.analyzer.lucene.IKSimilarity;
 
 import com.seaboat.robot.ability.Ability;
 import com.seaboat.robot.ability.DateAbility;
+import com.seaboat.robot.ability.ServerStatusAbility;
 import com.seaboat.robot.ability.index.IndexUtil;
 
 /**
@@ -34,6 +35,7 @@ public class AbilityBot {
 
 	public AbilityBot() {
 		abilityMap.put("DateAbility", new DateAbility());
+		abilityMap.put("ServerStatusAbility", new ServerStatusAbility());
 		pushToLucene();
 	}
 
@@ -48,13 +50,31 @@ public class AbilityBot {
 						Field.Index.ANALYZED));
 				IndexUtil.getIndexWriter().addDocument(doc);
 			}
+			String[] pattern2 = { "帮我查查服务器状态", "查服务器状态", "告诉我服务器状态" };
+			for (String pattern : pattern2) {
+				Document doc = new Document();
+				doc.add(new Field("pattern", pattern, Field.Store.YES,
+						Field.Index.ANALYZED));
+				doc.add(new Field("template", "ServerStatusAbility",
+						Field.Store.YES, Field.Index.ANALYZED));
+				IndexUtil.getIndexWriter().addDocument(doc);
+			}
+			String[] pattern3 = { "SUPER-ROBOT-MNIST" };
+			for (String pattern : pattern3) {
+				Document doc = new Document();
+				doc.add(new Field("pattern", pattern, Field.Store.YES,
+						Field.Index.ANALYZED));
+				doc.add(new Field("template", "ServerStatusAbility",
+						Field.Store.YES, Field.Index.ANALYZED));
+				IndexUtil.getIndexWriter().addDocument(doc);
+			}
 			IndexUtil.getIndexWriter().commit();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public String searchAbility(String input) {
+	public Ability searchAbility(String input) {
 		List<Document> docs = new ArrayList<Document>();
 		try {
 			IndexSearcher isearcher = IndexUtil.getIndexSearcher();
@@ -71,9 +91,8 @@ public class AbilityBot {
 		}
 		if (docs.size() >= 1) {
 			String ability = docs.get(0).get("template");
-			return abilityMap.get(ability).process();
+			return abilityMap.get(ability);
 		}
-		return "不好意思，不懂你的意思，可以让我的主人先教我！";
-
+		return null;
 	}
 }
