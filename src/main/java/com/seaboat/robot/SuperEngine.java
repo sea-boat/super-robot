@@ -3,6 +3,8 @@ package com.seaboat.robot;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.seaboat.robot.ability.Ability;
+
 import bitoflife.chatterbean.AliceBot;
 import bitoflife.chatterbean.parser.AliceBotParser;
 import bitoflife.chatterbean.parser.AliceBotParserConfigurationException;
@@ -30,6 +32,10 @@ public class SuperEngine implements Engine {
 		initAliceBot();
 		initAbilityBot();
 		initSessionManager();
+	}
+
+	public SessionManager getSessionManager() {
+		return manager;
 	}
 
 	private void initSessionManager() {
@@ -69,7 +75,23 @@ public class SuperEngine implements Engine {
 		String response = bot.respond(input);
 		if (response != null && !response.equals("#"))
 			return response;
-		response = abilityBot.searchAbility(input);
+		Ability ability = abilityBot.searchAbility(input);
+		response = ability.process();
+		if (response == null)
+			response = "不好意思，不懂你的意思，可以让我的主人先教我！";
+		return response;
+	}
+
+	public String respond(String input, String sessionId) {
+		String response = bot.respond(input);
+		if (response != null && !response.equals("#"))
+			return response;
+		SuperContext context = manager.getContext(sessionId);
+		Ability ability = abilityBot.searchAbility(input);
+		if (ability != null)
+			response = ability.process(context);
+		if (response == null)
+			response = "不好意思，不懂你的意思，可以让我的主人先教我！";
 		return response;
 	}
 

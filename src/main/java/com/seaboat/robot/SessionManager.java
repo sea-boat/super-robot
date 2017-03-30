@@ -44,7 +44,7 @@ public class SessionManager {
 	 * @param sessionId
 	 * @return
 	 */
-	public SuperContext getServerUserContext(String sessionId) {
+	public SuperContext getContext(String sessionId) {
 		return (SuperContext) sessionMap.get(sessionId);
 	}
 

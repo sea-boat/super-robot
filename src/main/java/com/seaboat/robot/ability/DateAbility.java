@@ -1,6 +1,9 @@
 package com.seaboat.robot.ability;
 
 import java.text.SimpleDateFormat;
+
+import com.seaboat.robot.SuperContext;
+
 /**
  * 
  * <pre><b>DateAbility provides date function. </b></pre>
@@ -19,6 +22,11 @@ public class DateAbility implements Ability {
 			return format.format(new java.util.Date());
 		} catch (Exception e) {
 		}
-		return "";
+		return null;
+	}
+
+	public String process(SuperContext context) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

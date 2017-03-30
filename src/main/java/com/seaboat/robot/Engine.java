@@ -10,7 +10,9 @@ package com.seaboat.robot;
  * @version 0.1
  */
 public interface Engine {
-	
+
 	public String respond(String input);
-	
+
+	public String respond(String input, String sessionId);
+
 }
