@@ -66,6 +66,8 @@ public class AbilityBot {
 						Field.Index.ANALYZED));
 				doc.add(new Field("template", "ServerStatusAbility",
 						Field.Store.YES, Field.Index.ANALYZED));
+				doc.add(new Field("template", "ServerStatusAbility", Field.Store.YES,
+						Field.Index.ANALYZED));
 				IndexUtil.getIndexWriter().addDocument(doc);
 			}
 			IndexUtil.getIndexWriter().commit();
