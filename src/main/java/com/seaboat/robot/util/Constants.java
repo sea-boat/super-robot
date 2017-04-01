@@ -16,5 +16,7 @@ public class Constants {
 	public static String SENTENCES = "SENTENCES";
 	
 	public static String PICTURE = "PICTURE";
+	
+	public static String PATH = "PATH";
 
 }

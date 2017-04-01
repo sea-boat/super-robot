@@ -15,7 +15,7 @@ import com.seaboat.robot.util.Constants;
  * <pre><b>blog: </b>http://blog.csdn.net/wangyangzhizhou</pre>
  * @version 0.1
  */
-public class ServerStatusAbility implements Ability {
+public class ServiceStatusAbility implements Ability {
 
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -29,11 +29,10 @@ public class ServerStatusAbility implements Ability {
 		for (String s : sentences)
 			System.out.println(s);
 		String response = "<br/><div><table align=\"left\" width=\"100%\" border=1 bordercolor=\"#523322\">"
-				+ "<tbody><tr><td colspan=\"3\" align=\"center\">服务器状态</td></tr>"
-				+ "<tr><td width=\"30%\" height=\"25\">IP</td><td >cpu</td><td >内存</td></tr>"
-				+ "<tr><td width=\"30%\">10.103.23.101</td> <td width=\"30%\">12%</td> <td>1254456kB</td></tr>"
+				+ "<tbody><tr><td colspan=\"3\" align=\"center\">服务状态</td></tr>"
+				+ "<tr><td width=\"30%\" height=\"25\">服务名</td><td >qps</td><td >rpc失败次数</td></tr>"
+				+ "<tr><td width=\"30%\">支付服务</td> <td width=\"30%\">2000</td> <td>50</td></tr>"
 				+ "</tbody></table></div><br/>";
-		;
 		return response;
 	}
 }
