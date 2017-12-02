@@ -100,6 +100,7 @@ public class AIMLHandler extends DefaultHandler {
 		updateIgnoreWhitespace(attributes);
 		pushTextNode();
 		String className = buildClassName(qname);
+		
 		try {
 			Class tagClass = Class.forName(className);
 			Constructor constructor = tagClass.getConstructor(Attributes.class);

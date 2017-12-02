@@ -28,7 +28,8 @@ public class AIMLParser {
 	 */
 
 	private final Searcher searcher = new Searcher();
-	private final AIMLHandler handler = new AIMLHandler();
+	//ignore <a> <ul> <p>
+	private final AIMLHandler handler = new AIMLHandler("a","ul","p","get_likes","atir","peron");
 	private SAXParser parser;
 
 	/*

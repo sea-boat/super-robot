@@ -22,77 +22,78 @@ import bitoflife.chatterbean.util.Searcher;
  */
 public class SuperEngine implements Engine {
 
-	private AliceBot bot;
+  private AliceBot bot;
 
-	private AbilityBot abilityBot;
+  private AliceBot endingBot;
 
-	private SessionManager manager;
+  private AbilityBot abilityBot;
 
-	public SuperEngine() {
-		initAliceBot();
-		initAbilityBot();
-		initSessionManager();
-	}
+  private SessionManager manager;
 
-	public SessionManager getSessionManager() {
-		return manager;
-	}
+  public SuperEngine() {
+    initAliceBot();
+    initAbilityBot();
+    initSessionManager();
+  }
 
-	private void initSessionManager() {
-		manager = SessionManager.getInstance();
-	}
+  public SessionManager getSessionManager() {
+    return manager;
+  }
 
-	private void initAbilityBot() {
-		this.abilityBot = new AbilityBot();
-	}
+  private void initSessionManager() {
+    manager = SessionManager.getInstance();
+  }
 
-	private void initAliceBot() {
-		Searcher searcher = new Searcher();
-		AliceBot bot = null;
-		try {
-			AliceBotParser parser = new AliceBotParser();
-			bot = parser.parse(
-					this.getClass().getResourceAsStream(
-							"/resources/context.xml"),
-					this.getClass().getResourceAsStream(
-							"/resources/splitters.xml"),
-					this.getClass().getResourceAsStream(
-							"/resources/substitutions.xml"), searcher
-							.search("/resources/chinese/"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (AliceBotParserException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (AliceBotParserConfigurationException e) {
-			e.printStackTrace();
-		}
-		this.bot = bot;
-	}
+  private void initAbilityBot() {
+    this.abilityBot = new AbilityBot();
+  }
 
-	public String respond(String input) {
-		String response = bot.respond(input);
-		if (response != null && !response.equals("#"))
-			return response;
-		Ability ability = abilityBot.searchAbility(input);
-		response = ability.process();
-		if (response == null)
-			response = "不好意思，不懂你的意思，可以让我的主人先教我！";
-		return response;
-	}
+  private void initAliceBot() {
+    Searcher searcher = new Searcher();
+    AliceBot bot = null;
+    AliceBot endingBot = null;
+    try {
+      AliceBotParser parser = new AliceBotParser();
+      bot = parser.parse(this.getClass().getResourceAsStream("/resources/context.xml"),
+          this.getClass().getResourceAsStream("/resources/splitters.xml"),
+          this.getClass().getResourceAsStream("/resources/substitutions.xml"),
+          searcher.search("/resources/corpus/"));
+      endingBot = parser.parse(this.getClass().getResourceAsStream("/resources/context.xml"),
+          this.getClass().getResourceAsStream("/resources/splitters.xml"),
+          this.getClass().getResourceAsStream("/resources/substitutions.xml"),
+          searcher.searchEnding("/resources/corpus/ending/"));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (AliceBotParserException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (AliceBotParserConfigurationException e) {
+      e.printStackTrace();
+    }
+    this.bot = bot;
+    this.endingBot = endingBot;
+  }
 
-	public String respond(String input, String sessionId) {
-		String response = bot.respond(input);
-		if (response != null && !response.equals("#"))
-			return response;
-		SuperContext context = manager.getContext(sessionId);
-		Ability ability = abilityBot.searchAbility(input);
-		if (ability != null)
-			response = ability.process(context);
-		if (response == null)
-			response = "不好意思，不懂你的意思，可以让我的主人先教我！";
-		return response;
-	}
+  public String respond(String input) {
+    String response = bot.respond(input);
+    if (response != null && !response.equals("#")) return response;
+    Ability ability = abilityBot.searchAbility(input);
+    response = ability.process();
+    if (response == null) response = "不好意思，不懂你的意思，可以让我的主人先教我！";
+    return response;
+  }
+
+  public String respond(String input, String sessionId) {
+    String response = bot.respond(input);
+    if (response != null && !response.equals("#")) return response;
+    SuperContext context = manager.getContext(sessionId);
+    // Ability ability = abilityBot.searchAbility(input);
+    // if (ability != null)
+    // response = ability.process(context);
+    if (response == null || response.equals("#")) response = endingBot.respond(input);
+    if (response == null || response.equals("#")) response = "不好意思，不懂你的意思，可以让我的主人先教我！";
+    return response;
+  }
 
 }
