@@ -2,8 +2,12 @@ package com.seaboat.robot;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.seaboat.robot.ability.Ability;
+import com.seaboat.robot.matcher.DefaultMatcher;
+import com.seaboat.robot.matcher.Matcher;
 
 import bitoflife.chatterbean.AliceBot;
 import bitoflife.chatterbean.parser.AliceBotParser;
@@ -30,10 +34,29 @@ public class SuperEngine implements Engine {
 
   private SessionManager manager;
 
+  private String word2vecPath;
+
+  private Matcher matcher;
+
+  private List<String> qaFileList;
+
   public SuperEngine() {
     initAliceBot();
     initAbilityBot();
     initSessionManager();
+  }
+
+  public void initMatcher() {
+    matcher = new DefaultMatcher(word2vecPath);
+    matcher.initMatcher(qaFileList);
+  }
+
+  public void setWord2vecPath(String word2vecPath) {
+    this.word2vecPath = word2vecPath;
+  }
+
+  public void setQaFileList(List list) {
+    this.qaFileList = list;
   }
 
   public SessionManager getSessionManager() {
@@ -88,6 +111,10 @@ public class SuperEngine implements Engine {
     String response = bot.respond(input);
     if (response != null && !response.equals("#")) return response;
     SuperContext context = manager.getContext(sessionId);
+    String intent = "khala";
+    System.out.println(input);
+    response = matcher.match(intent, input);
+    System.out.println(response);
     // Ability ability = abilityBot.searchAbility(input);
     // if (ability != null)
     // response = ability.process(context);
