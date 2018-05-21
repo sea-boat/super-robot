@@ -14,15 +14,12 @@
 </category> 
  
 <category> 
-<pattern>_ 遗 憾 *   </pattern> 
+<pattern>* 遗 憾 *</pattern> 
 <template> 如果说有那么一点遗憾的话，是我没有勇气做出那样的决定？参加高空蹦极。    
 </template> 
 </category> 
  
-<category> 
-<pattern>_ 遗 憾 </pattern> 
-<template><srai><star/>遗憾<star/> </srai></template> 
-</category> 
+
 
 <category> 
 <pattern>_ 没 有 爱 情 *   </pattern> 

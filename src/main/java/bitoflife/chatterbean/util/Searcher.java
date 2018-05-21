@@ -41,7 +41,7 @@ public class Searcher implements FilenameFilter {
       "Discuss.xml", "Encourage.xml", "External.xml", "Film.xml", "Food.xml", "Game.xml",
       "gossip.xml", "Greeting.xml", "Healthy.xml", "Inherence.xml", "Internet.xml", "Job.xml",
       "Joke.xml", "Life.xml", "Main.xml", "MarkResponse.xml", "Master.xml", "Music.xml",
-      "Photography.xml", "Plan.xml", "Praise.xml", "Rude.xml", "Sentiment .xml", "Sex.xml",
+      "Photography.xml", "Plan.xml", "Praise.xml", "Rude.xml", "Sentiment.xml", "Sex.xml",
       "SmallWord.xml", "Study.xml", "Travel.xml"};
   private static String[] endingNames = {"ending.xml"};
   private String expression;
@@ -103,7 +103,7 @@ public class Searcher implements FilenameFilter {
   public InputStream[] search(String path) throws IOException {
     InputStream[] files = new InputStream[names.length];
     for (int i = 0, n = names.length; i < n; i++) {
-      files[i] = this.getClass().getResourceAsStream(path + names[i]);
+      files[i] = new FileInputStream(path + names[i]);
     }
     return files;
   }
@@ -111,7 +111,7 @@ public class Searcher implements FilenameFilter {
   public InputStream[] searchEnding(String path) throws IOException {
     InputStream[] files = new InputStream[endingNames.length];
     for (int i = 0, n = endingNames.length; i < n; i++) {
-      files[i] = this.getClass().getResourceAsStream(path + endingNames[i]);
+      files[i] = new FileInputStream(path + endingNames[i]);
     }
     return files;
   }

@@ -1,7 +1,9 @@
 package com.seaboat.robot;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -75,16 +77,25 @@ public class SuperEngine implements Engine {
     Searcher searcher = new Searcher();
     AliceBot bot = null;
     AliceBot endingBot = null;
+    String path = System.getProperty("user.dir");
     try {
       AliceBotParser parser = new AliceBotParser();
-      bot = parser.parse(this.getClass().getResourceAsStream("/resources/context.xml"),
-          this.getClass().getResourceAsStream("/resources/splitters.xml"),
-          this.getClass().getResourceAsStream("/resources/substitutions.xml"),
-          searcher.search("/resources/corpus/"));
-      endingBot = parser.parse(this.getClass().getResourceAsStream("/resources/context.xml"),
-          this.getClass().getResourceAsStream("/resources/splitters.xml"),
-          this.getClass().getResourceAsStream("/resources/substitutions.xml"),
-          searcher.searchEnding("/resources/corpus/ending/"));
+//      bot = parser.parse(this.getClass().getResourceAsStream("/resources/context.xml"),
+//          this.getClass().getResourceAsStream("/resources/splitters.xml"),
+//          this.getClass().getResourceAsStream("/resources/substitutions.xml"),
+//          searcher.search(System.getProperty("user.dir")+"/resources/corpus/"));
+//      endingBot = parser.parse(this.getClass().getResourceAsStream("/resources/context.xml"),
+//          this.getClass().getResourceAsStream("/resources/splitters.xml"),
+//          this.getClass().getResourceAsStream("/resources/substitutions.xml"),
+//          searcher.searchEnding(System.getProperty("user.dir")+"/resources/corpus/ending/"));
+      bot = parser.parse(new FileInputStream(path + "/resources/context.xml"),
+    		  new FileInputStream(path + "/resources/splitters.xml"),
+    		  new FileInputStream(path + "/resources/substitutions.xml"),
+              searcher.search(path+"/resources/corpus/"));
+      endingBot = parser.parse(new FileInputStream(path + "/resources/context.xml"),
+    		  new FileInputStream(path + "/resources/splitters.xml"),
+    		  new FileInputStream(path + "/resources/substitutions.xml"),
+              searcher.searchEnding(path + "/resources/corpus/ending/"));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (AliceBotParserException e) {
