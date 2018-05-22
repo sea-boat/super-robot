@@ -27,7 +27,7 @@ public class Bootstrap {
 	}
 
 	public static void main(String[] args) throws Exception {
-		SuperEngine engine = new SuperEngine();
+		SuperEngine engine = SuperEngine.getInstance();
 		System.err.println("super-robot：>" + engine.respond("欢迎"));
 		while (true) {
 			String input = input();

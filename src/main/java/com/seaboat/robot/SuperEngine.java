@@ -41,11 +41,17 @@ public class SuperEngine implements Engine {
   private Matcher matcher;
 
   private List<String> qaFileList;
+  
+  private static SuperEngine instance = new SuperEngine();
 
-  public SuperEngine() {
+  private SuperEngine() {
     initAliceBot();
     initAbilityBot();
     initSessionManager();
+  }
+  
+  public static SuperEngine getInstance() {
+	  return instance;
   }
 
   public void initMatcher() {
