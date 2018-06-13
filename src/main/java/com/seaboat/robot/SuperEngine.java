@@ -163,4 +163,13 @@ public class SuperEngine implements Engine {
 		}
 	}
 
+	public void deleteQA(long id) {
+		try {
+			DAO4H2.deleteQA(id);
+			initAliceBot();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

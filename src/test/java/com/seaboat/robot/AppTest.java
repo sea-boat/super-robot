@@ -15,6 +15,9 @@ public class AppTest {
 			DAO4H2.insertQA(new QA("haha", "hehe"));
 			for (QA qa : DAO4H2.getAllQA())
 				System.out.println(qa);
+			DAO4H2.deleteQA(2);
+			for (QA qa : DAO4H2.getAllQA())
+				System.out.println(qa);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

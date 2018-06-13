@@ -11,6 +11,8 @@ package com.seaboat.robot.util;
  */
 public class QA {
 
+	private long id;
+
 	private String oriPattern;
 
 	private String[] pattern;
@@ -38,7 +40,15 @@ public class QA {
 	}
 
 	public String toString() {
-		return pattern + ":" + template;
+		return id + ":" + oriPattern + ":" + template;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }
