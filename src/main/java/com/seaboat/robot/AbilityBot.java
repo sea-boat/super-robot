@@ -1,9 +1,6 @@
 package com.seaboat.robot;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.seaboat.robot.ability.Ability;
@@ -31,7 +28,6 @@ public class AbilityBot {
 		abilityMap.put("MnistAbility", new MnistAbility());
 		abilityMap.put("ServiceStatusAbility", new ServiceStatusAbility());
 	}
-
 
 	public Ability searchAbility(String input) {
 		return null;

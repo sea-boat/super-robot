@@ -21,7 +21,6 @@ import org.xml.sax.Attributes;
 
 import bitoflife.chatterbean.util.Translate;
 
-
 public class Pattern implements AIMLElement {
 	/*
 	 * Attribute Section
@@ -36,6 +35,10 @@ public class Pattern implements AIMLElement {
 	 */
 
 	public Pattern() {
+	}
+
+	public Pattern(String[] pattern) {
+		this.pattern = pattern;
 	}
 
 	public Pattern(String pattern) {
