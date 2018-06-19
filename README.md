@@ -1,5 +1,5 @@
 ## super-robot
-a robot that can chat with people and handle the business.
+a robot based on Alice Bot, which can chat with people and handle the business. 
 
 ## Features
 * Alice Bot for chatting.
