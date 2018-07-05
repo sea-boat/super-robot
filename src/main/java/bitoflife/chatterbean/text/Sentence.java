@@ -32,8 +32,7 @@ public class Sentence {
 	private String[] splitted; // The normalized entry, splitted in an array of
 								// words.
 
-	public static final Sentence ASTERISK = new Sentence(" * ", new Integer[] {
-			0, 2 }, " * ");
+	public static final Sentence ASTERISK = new Sentence(" * ", new Integer[] { 0, 2 }, " * ");
 
 	/*
 	 * Constructors
@@ -60,9 +59,8 @@ public class Sentence {
 		if (obj == null || !(obj instanceof Sentence))
 			return false;
 		Sentence compared = (Sentence) obj;
-		return (original.equals(compared.original)
-				&& Arrays.equals(mappings, compared.mappings) && normalized
-					.equals(compared.normalized));
+		return (original.equals(compared.original) && Arrays.equals(mappings, compared.mappings)
+				&& normalized.equals(compared.normalized));
 	}
 
 	/**
@@ -100,10 +98,8 @@ public class Sentence {
 		if (endIndex >= n)
 			endIndex = n - 1;
 
-		String value = original.substring(mappings[beginIndex],
-				mappings[endIndex] + 1);
-		value = value.replaceAll(
-				"^[^A-Za-z0-9\u4E00-\u9FA5]+|[^A-Za-z0-9\u4E00-\u9FA5]+$", " ");
+		String value = original.substring(mappings[beginIndex], mappings[endIndex] + 1);
+		value = value.replaceAll("^[^A-Za-z0-9\u4E00-\u9FA5]+|[^A-Za-z0-9\u4E00-\u9FA5]+$", " ");
 		return value;
 	}
 
@@ -119,9 +115,7 @@ public class Sentence {
 		StringBuffer output = new StringBuffer("");
 		String tempOriginal = original.replace(" ", "#");
 		String tempNormalized = normalized.replace(" ", "#");
-		output.append("[" + tempOriginal + "]")
-				.append(Arrays.toString(mappings))
-				.append("[" + tempNormalized + "]");
+		output.append("[" + tempOriginal + "]").append(Arrays.toString(mappings)).append("[" + tempNormalized + "]");
 		output.append("[");
 		for (int i = 0; i < splitted.length; i++) {
 			if (i == 0)

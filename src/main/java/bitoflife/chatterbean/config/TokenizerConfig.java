@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -16,9 +16,8 @@ package bitoflife.chatterbean.config;
 
 import bitoflife.chatterbean.text.Tokenizer;
 
-public interface TokenizerConfig
-{
-  public Tokenizer newInstance();
+public interface TokenizerConfig {
+	public Tokenizer newInstance();
 
-  public String[] splitters();
+	public String[] splitters();
 }

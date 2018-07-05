@@ -53,7 +53,6 @@ public class Context {
 	private final List<Response> responses = new LinkedList<Response>();
 
 	private final Random random = new Random();
-	private long seed = 0; 
 
 	private OutputStream output;
 
@@ -100,8 +99,7 @@ public class Context {
 	 *            with the same name of this one, the old listener will be
 	 *            discarded.
 	 */
-	public void addContextPropertyChangeListener(
-			ContextPropertyChangeListener listener) {
+	public void addContextPropertyChangeListener(ContextPropertyChangeListener listener) {
 		listeners.put(listener.name(), listener);
 	}
 
@@ -114,10 +112,8 @@ public class Context {
 	 * @param listener
 	 *            A property change listener.
 	 */
-	public void removeContextPropertyChangeListener(
-			ContextPropertyChangeListener listener) {
-		ContextPropertyChangeListener listening = listeners
-				.get(listener.name());
+	public void removeContextPropertyChangeListener(ContextPropertyChangeListener listener) {
+		ContextPropertyChangeListener listening = listeners.get(listener.name());
 		if (listening == listener)
 			listeners.remove(listener.name());
 	}
@@ -155,8 +151,7 @@ public class Context {
 		ContextPropertyChangeListener listener = listeners.get(name);
 		if (listener != null) {
 			Object oldValue = properties.get(name);
-			PropertyChangeEvent event = new PropertyChangeEvent(this, name,
-					oldValue, value);
+			PropertyChangeEvent event = new PropertyChangeEvent(this, name, oldValue, value);
 			listener.propertyChange(event);
 		}
 

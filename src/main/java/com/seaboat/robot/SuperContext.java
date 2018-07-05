@@ -16,7 +16,7 @@ public class SuperContext {
 
 	private String sessionId;
 
-	private Hashtable attributes = new Hashtable();
+	private Hashtable<String, Object> attributes = new Hashtable<String, Object>();
 
 	public String getSessionId() {
 		return sessionId;
@@ -30,7 +30,7 @@ public class SuperContext {
 		return attributes.get(name);
 	}
 
-	public Enumeration getAttributeNames() {
+	public Enumeration<String> getAttributeNames() {
 		return attributes.keys();
 	}
 

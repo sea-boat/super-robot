@@ -13,8 +13,8 @@ import java.util.List;
  */
 public interface Matcher {
 
-  public String match(String intent, String question);
+	public String match(String intent, String question);
 
-  public void initMatcher(List<String> files);
+	public void initMatcher(List<String> files);
 
 }

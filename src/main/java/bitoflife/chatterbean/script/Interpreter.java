@@ -19,6 +19,5 @@ public interface Interpreter {
 
 	public Object variable(String name) throws InterpretingException;
 
-	public void variable(String name, Object value)
-			throws InterpretingException;
+	public void variable(String name, Object value) throws InterpretingException;
 }

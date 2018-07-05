@@ -24,8 +24,8 @@ public class ServerStatusAbility implements Ability {
 	}
 
 	public String process(SuperContext context) {
-		List<String> sentences = (List<String>) context
-				.getAttributes(Constants.SENTENCES);
+		@SuppressWarnings("unchecked")
+		List<String> sentences = (List<String>) context.getAttributes(Constants.SENTENCES);
 		for (String s : sentences)
 			System.out.println(s);
 		String response = "<br/><div><table align=\"left\" width=\"100%\" border=1 bordercolor=\"#523322\">"

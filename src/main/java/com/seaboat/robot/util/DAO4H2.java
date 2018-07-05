@@ -101,7 +101,7 @@ public class DAO4H2 {
 	}
 
 	public static void main(String[] args) {
-		String sql = "create table qa (id int(11) NOT NULL auto_increment,pattern varchar(2048),template varchar(2048),PRIMARY KEY (`id`))";
+		String sql = "create table qa (id int(11) NOT NULL auto_increment,pattern varchar(50),template varchar(100),PRIMARY KEY (`id`))";
 		try {
 			DAO4H2.crateTable(sql);
 		} catch (SQLException e) {

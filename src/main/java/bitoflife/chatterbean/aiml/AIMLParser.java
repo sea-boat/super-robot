@@ -20,16 +20,14 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import bitoflife.chatterbean.Graphmaster;
-import bitoflife.chatterbean.util.Searcher;
 
 public class AIMLParser {
 	/*
 	 * Attributes
 	 */
 
-	private final Searcher searcher = new Searcher();
 	//ignore <a> <ul> <p>
-	private final AIMLHandler handler = new AIMLHandler("a","ul","p","get_likes","atir","peron");
+	private final AIMLHandler handler = new AIMLHandler("a", "ul", "p", "get_likes", "atir", "peron");
 	private SAXParser parser;
 
 	/*
@@ -48,8 +46,7 @@ public class AIMLParser {
 	 * Methods
 	 */
 
-	public void parse(Graphmaster graphmaster, InputStream... sources)
-			throws AIMLParserException {
+	public void parse(Graphmaster graphmaster, InputStream... sources) throws AIMLParserException {
 		try {
 			for (InputStream aiml : sources)
 				parser.parse(aiml, handler);

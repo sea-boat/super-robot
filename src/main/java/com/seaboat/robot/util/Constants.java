@@ -14,9 +14,9 @@ public class Constants {
 	public static String ROBOT_SESSION_ID = "ROBOT_SESSION_ID";
 
 	public static String SENTENCES = "SENTENCES";
-	
+
 	public static String PICTURE = "PICTURE";
-	
+
 	public static String PATH = "PATH";
 
 }

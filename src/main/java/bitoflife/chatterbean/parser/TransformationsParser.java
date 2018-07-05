@@ -39,8 +39,7 @@ public class TransformationsParser {
 	 */
 
 	private final SubstitutionBuilder substBuilder = new SubstitutionBuilder();
-	private final ReflectionHandler substHandler = new ReflectionHandler(
-			substBuilder);
+	private final ReflectionHandler substHandler = new ReflectionHandler(substBuilder);
 	private final SplitterHandler splitHandler = new SplitterHandler();
 
 	private SAXParser parser;
@@ -49,8 +48,7 @@ public class TransformationsParser {
 	 * Constructor Section
 	 */
 
-	public TransformationsParser() throws ParserConfigurationException,
-			SAXException {
+	public TransformationsParser() throws ParserConfigurationException, SAXException {
 		parser = SAXParserFactory.newInstance().newSAXParser();
 	}
 
@@ -58,15 +56,14 @@ public class TransformationsParser {
 	 * Method Section
 	 */
 
-	private List<String> parseSplitters(InputStream splitters)
-			throws IOException, SAXException {
+	private List<String> parseSplitters(InputStream splitters) throws IOException, SAXException {
 		splitHandler.clear();
 		parser.parse(splitters, splitHandler);
 		return splitHandler.parsed();
 	}
 
-	private Map<String, Map<String, String>> parseSubstitutions(
-			InputStream substitutions) throws IOException, SAXException {
+	private Map<String, Map<String, String>> parseSubstitutions(InputStream substitutions)
+			throws IOException, SAXException {
 		substBuilder.clear();
 		parser.parse(substitutions, substHandler);
 		return substBuilder.parsed();
@@ -84,13 +81,11 @@ public class TransformationsParser {
 		return bytes;
 	}
 
-	public Transformations parse(InputStream splitters,
-			InputStream substitutions) throws ConfigException, IOException,
-			SAXException {
+	public Transformations parse(InputStream splitters, InputStream substitutions)
+			throws ConfigException, IOException, SAXException {
 		byte[] bytes = toByteArray(splitters);
 
-		TokenizerConfig config = new TokenizerConfigStream(
-				new ByteArrayInputStream(bytes));
+		TokenizerConfig config = new TokenizerConfigStream(new ByteArrayInputStream(bytes));
 		Tokenizer tokenizer = new Tokenizer(config);
 
 		List<String> splitChars = parseSplitters(new ByteArrayInputStream(bytes));

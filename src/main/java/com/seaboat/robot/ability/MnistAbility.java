@@ -23,8 +23,7 @@ public class MnistAbility implements Ability {
 	}
 
 	public String process(SuperContext context) {
-		BufferedImage in = (BufferedImage) context
-				.getAttributes(Constants.PICTURE);
+		BufferedImage in = (BufferedImage) context.getAttributes(Constants.PICTURE);
 		String path = (String) context.getAttributes(Constants.PATH);
 		return String.valueOf(KNN.predict(in, path));
 	}

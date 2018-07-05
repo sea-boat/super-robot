@@ -19,40 +19,34 @@ import bitoflife.chatterbean.AliceBot;
 import bitoflife.chatterbean.Context;
 import bitoflife.chatterbean.Match;
 
-public class Ending extends TemplateElement
-{
-  /*
-  Constructors
-  */
+public class Ending extends TemplateElement {
+	/*
+	Constructors
+	*/
 
-  public Ending(Attributes attributes)
-  {
-  }
+	public Ending(Attributes attributes) {
+	}
 
-  public Ending(Object... children)
-  {
-    super(children);
-  }
-  
-  /*
-  Methods
-  */
-  
-  public String process(Match match)
-  {
-    AliceBot bot = null;
-    Context context = null;
-    if (match != null) try
-    {
-      bot = match.getCallback();
-      context = bot.getContext();
-      context.print(super.process(match));
-    }
-    catch (Exception e)
-    {
-      throw new RuntimeException(e);
-    }
-    
-    return "";
-  }
+	public Ending(Object... children) {
+		super(children);
+	}
+
+	/*
+	Methods
+	*/
+
+	public String process(Match match) {
+		AliceBot bot = null;
+		Context context = null;
+		if (match != null)
+			try {
+				bot = match.getCallback();
+				context = bot.getContext();
+				context.print(super.process(match));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+
+		return "";
+	}
 }

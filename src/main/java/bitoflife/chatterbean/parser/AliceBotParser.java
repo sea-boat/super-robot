@@ -55,24 +55,24 @@ public class AliceBotParser {
 	 * Methods
 	 */
 
-	private Context newContext(InputStream defaults, InputStream splitters,
-			InputStream substitutions) throws Exception {
+	private Context newContext(InputStream defaults, InputStream splitters, InputStream substitutions)
+			throws Exception {
+		@SuppressWarnings("deprecation")
 		Context context = (Context) contextClass.newInstance();
 		contParser.parse(context, defaults);
-		Transformations transformations = normParser.parse(splitters,
-				substitutions);
+		Transformations transformations = normParser.parse(splitters, substitutions);
 		context.setTransformations(transformations);
 		return context;
 	}
 
 	private Graphmaster newGraphmaster(InputStream... aiml) throws Exception {
+		@SuppressWarnings("deprecation")
 		Graphmaster graphmaster = (Graphmaster) graphmasterClass.newInstance();
 		aimlParser.parse(graphmaster, aiml);
 		return graphmaster;
 	}
 
-	public void parse(AliceBot bot, InputStream defaults,
-			InputStream splitters, InputStream substitutions,
+	public void parse(AliceBot bot, InputStream defaults, InputStream splitters, InputStream substitutions,
 			InputStream... aiml) throws AliceBotParserException {
 		try {
 			Context context = newContext(defaults, splitters, substitutions);
@@ -85,8 +85,7 @@ public class AliceBotParser {
 		}
 	}
 
-	public AliceBot parse(InputStream defaults, InputStream splitters,
-			InputStream substitutions, InputStream... aiml)
+	public AliceBot parse(InputStream defaults, InputStream splitters, InputStream substitutions, InputStream... aiml)
 			throws AliceBotParserException {
 		try {
 			AliceBot bot = new AliceBot();
@@ -107,8 +106,7 @@ public class AliceBotParser {
 		this.contextClass = contextClass;
 	}
 
-	public <M extends Graphmaster> void graphmasterClass(
-			Class<M> graphmasterClass) {
+	public <M extends Graphmaster> void graphmasterClass(Class<M> graphmasterClass) {
 		this.graphmasterClass = graphmasterClass;
 	}
 }

@@ -69,8 +69,7 @@ public class AliceBot {
 	 * Method Section
 	 */
 
-	private void respond(Sentence sentence, Sentence that, Sentence topic,
-			Response response) {
+	private void respond(Sentence sentence, Sentence that, Sentence topic, Response response) {
 		if (sentence.length() > 0) {
 			Match match = new Match(this, sentence, that, topic);
 			Category category = graphmaster.match(match);

@@ -60,8 +60,7 @@ public class Date extends TemplateElement {
 
 	private String defaultDate(Match match) {
 		try {
-			format.applyPattern((String) match.getCallback().getContext()
-					.property("predicate.dateFormat"));
+			format.applyPattern((String) match.getCallback().getContext().property("predicate.dateFormat"));
 			return format.format(new java.util.Date());
 		} catch (NullPointerException e) {
 			return "";

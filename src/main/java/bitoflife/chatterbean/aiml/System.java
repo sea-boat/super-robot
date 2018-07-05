@@ -37,13 +37,11 @@ public class System extends TemplateElement {
 	 * Methods
 	 */
 
-	public String process(Match match) 
-	{
+	public String process(Match match) {
 		try {
 			AliceBot bot = match.getCallback();
 			Context context = bot.getContext();
-			Interpreter interpreter = (Interpreter) context
-					.property("beanshell.interpreter");
+			Interpreter interpreter = (Interpreter) context.property("beanshell.interpreter");
 			if (interpreter == null)
 				return "";
 

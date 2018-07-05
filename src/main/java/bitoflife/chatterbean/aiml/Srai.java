@@ -45,8 +45,7 @@ public class Srai extends TemplateElement {
 			AliceBot bot = (match != null ? match.getCallback() : null);
 			return (bot != null ? bot.respond(request) : "");
 		} catch (Exception e) {
-			throw new RuntimeException("While trying to respond \"" + request
-					+ "\"", e);
+			throw new RuntimeException("While trying to respond \"" + request + "\"", e);
 		}
 	}
 

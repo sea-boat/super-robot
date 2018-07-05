@@ -19,35 +19,32 @@ import java.util.regex.Pattern;
 import org.xml.sax.Attributes;
 import bitoflife.chatterbean.Match;
 
-public class Sentence extends TemplateElement
-{
-  /*
-  Constructors
-  */
+public class Sentence extends TemplateElement {
+	/*
+	Constructors
+	*/
 
-  public Sentence(Attributes attributes)
-  {
-  }
+	public Sentence(Attributes attributes) {
+	}
 
-  public Sentence(Object... children)
-  {
-    super(children);
-  }
+	public Sentence(Object... children) {
+		super(children);
+	}
 
-  /*
-  Methods
-  */
-  
-  public String process(Match match)
-  {
-    String result = super.process(match);
-    if (result == null || "".equals(result.trim())) return "";
-    Pattern p = Pattern.compile("(^\\s*[a-z]|[\\.\\?!]+\\s*[a-z])");
-    Matcher m = p.matcher(result);
-    StringBuffer buffer = new StringBuffer();
-    while (m.find())
-      m.appendReplacement(buffer, m.group().toUpperCase());
-    m.appendTail(buffer);
-    return buffer.toString();
-  }
+	/*
+	Methods
+	*/
+
+	public String process(Match match) {
+		String result = super.process(match);
+		if (result == null || "".equals(result.trim()))
+			return "";
+		Pattern p = Pattern.compile("(^\\s*[a-z]|[\\.\\?!]+\\s*[a-z])");
+		Matcher m = p.matcher(result);
+		StringBuffer buffer = new StringBuffer();
+		while (m.find())
+			m.appendReplacement(buffer, m.group().toUpperCase());
+		m.appendTail(buffer);
+		return buffer.toString();
+	}
 }

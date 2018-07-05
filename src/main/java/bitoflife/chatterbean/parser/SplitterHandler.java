@@ -43,10 +43,8 @@ public class SplitterHandler extends DefaultHandler {
 	/*
 	 * Event Section
 	 */
-	public void startElement(String namespace, String name, String qname,
-			Attributes attributes) throws SAXException {
-		if (qname.equals("splitter")
-				&& !"word".equals(attributes.getValue("type")))
+	public void startElement(String namespace, String name, String qname, Attributes attributes) throws SAXException {
+		if (qname.equals("splitter") && !"word".equals(attributes.getValue("type")))
 			splitters.add(attributes.getValue(0));
 	}
 

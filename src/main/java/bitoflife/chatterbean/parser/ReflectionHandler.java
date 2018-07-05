@@ -37,13 +37,10 @@ public class ReflectionHandler extends DefaultHandler {
 		this.builder = builder;
 	}
 
-	public void startElement(String namespace, String name, String qname,
-			Attributes attributes) {
+	public void startElement(String namespace, String name, String qname, Attributes attributes) {
 		try {
-			String methodName = "start" + qname.substring(0, 1).toUpperCase()
-					+ qname.substring(1);
-			Method event = builder.getClass().getMethod(methodName,
-					Attributes.class);
+			String methodName = "start" + qname.substring(0, 1).toUpperCase() + qname.substring(1);
+			Method event = builder.getClass().getMethod(methodName, Attributes.class);
 			event.invoke(builder, attributes);
 		} catch (NoSuchMethodException e) {
 		} catch (Exception e) {
@@ -57,8 +54,7 @@ public class ReflectionHandler extends DefaultHandler {
 
 	public void endElement(String namespace, String name, String qname) {
 		try {
-			String methodName = "end" + qname.substring(0, 1).toUpperCase()
-					+ qname.substring(1);
+			String methodName = "end" + qname.substring(0, 1).toUpperCase() + qname.substring(1);
 			Method event = builder.getClass().getMethod(methodName);
 			event.invoke(builder);
 		} catch (NoSuchMethodException e) {

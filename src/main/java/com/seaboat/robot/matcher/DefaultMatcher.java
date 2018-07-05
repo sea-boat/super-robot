@@ -1,6 +1,5 @@
 package com.seaboat.robot.matcher;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,20 +25,10 @@ public class DefaultMatcher implements Matcher {
 
 	public Word2Vec vec;
 
-	public String defaultWord2vecPath = "data/Google_word2vec_zhwiki1710_300d.bin";
-
 	// public Map<String, List<QA>> segMap = new HashMap<String, List<QA>>();
 
-	public DefaultMatcher(String word2vecPath) {
-		vec = Word2Vec.getInstance(false);
-		try {
-			if (word2vecPath != null)
-				vec.loadGoogleModel(word2vecPath);
-			else
-				vec.loadGoogleModel(defaultWord2vecPath);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public DefaultMatcher() {
+		vec = Word2Vec.getInstance(true);
 	}
 
 	public String match(String intent, String question) {

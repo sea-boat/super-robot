@@ -45,7 +45,7 @@ public class Learn extends TemplateElement {
 			Graphmaster graphmaster = bot.getGraphmaster();
 
 			String address = super.process(match);
-			URL url = new URL(address); 
+			URL url = new URL(address);
 
 			AIMLParser parser = new AIMLParser();
 			parser.parse(graphmaster, url.openStream());

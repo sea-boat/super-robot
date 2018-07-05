@@ -46,7 +46,6 @@ public class Transformations {
 		private final List<Integer> mappings = new LinkedList<Integer>();
 
 		private String input;
-		private String find;
 		private String replace;
 
 		/*
@@ -79,7 +78,6 @@ public class Transformations {
 
 		public void prepare(String input, String find, String replace) {
 			this.input = input;
-			this.find = find;
 			this.replace = replace;
 			spaceCount = spaceCount(find);
 			listIndex = 0;
@@ -112,16 +110,14 @@ public class Transformations {
 	private static final Integer[] INTEGER_ARRAY = new Integer[0];
 
 	private final Tokenizer tokenizer;
-	private final Pattern fitting = Pattern.compile("[^A-Z0-9\u4E00-\u9FA5]+"); 
-	private final Pattern wordBreakers = Pattern
-			.compile("([,，;；:：])([A-Za-z\u4E00-\u9FA5]|\\s{2,})");
+	private final Pattern fitting = Pattern.compile("[^A-Z0-9\u4E00-\u9FA5]+");
+	private final Pattern wordBreakers = Pattern.compile("([,，;；:：])([A-Za-z\u4E00-\u9FA5]|\\s{2,})");
 
 	// The regular expression which will split entries by sentence splitters.
 	private final SentenceSplitter splitter;
 
 	// The collection of substitutions known to the system.
 	private Map<String, String> correction;
-	private Map<String, String> protection;
 	private List<Substitution> person;
 	private List<Substitution> person2;
 	private List<Substitution> gender;
@@ -134,11 +130,10 @@ public class Transformations {
 	 * Constructs a new Transformations out of a list of sentence splitters and
 	 * several substitution maps.
 	 */
-	public Transformations(List<String> splitters,
-			Map<String, Map<String, String>> substitutions, Tokenizer tokenizer) {
+	public Transformations(List<String> splitters, Map<String, Map<String, String>> substitutions,
+			Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
-		this.splitter = new SentenceSplitter(substitutions.get("protection"),
-				splitters);
+		this.splitter = new SentenceSplitter(substitutions.get("protection"), splitters);
 
 		correction = substitutions.get("correction");
 		person = newSubstitutionList(substitutions.get("person"));
@@ -152,11 +147,9 @@ public class Transformations {
 	 */
 
 	private List<Substitution> newSubstitutionList(Map<String, String> inputs) {
-		List<Substitution> subsitutions = new ArrayList<Substitution>(
-				inputs.size());
+		List<Substitution> subsitutions = new ArrayList<Substitution>(inputs.size());
 		for (Entry<String, String> entry : inputs.entrySet()) {
-			Substitution substitution = new Substitution(entry.getKey(),
-					entry.getValue(), tokenizer);
+			Substitution substitution = new Substitution(entry.getKey(), entry.getValue(), tokenizer);
 			subsitutions.add(substitution);
 		}
 
@@ -170,7 +163,7 @@ public class Transformations {
 		 */
 		Matcher matcher = wordBreakers.matcher(input);
 		StringBuffer buffer = new StringBuffer();
-		while (matcher.find()) { 
+		while (matcher.find()) {
 			String replace = matcher.group(2);
 			if (replace.charAt(0) != ' ')
 				replace = matcher.group(1) + ' ' + replace;
@@ -213,8 +206,7 @@ public class Transformations {
 
 	private String substitute(String input) {
 		for (String find : correction.keySet()) {
-			Pattern pattern = Pattern.compile(find, CASE_INSENSITIVE
-					| UNICODE_CASE);
+			Pattern pattern = Pattern.compile(find, CASE_INSENSITIVE | UNICODE_CASE);
 			Matcher matcher = pattern.matcher(input);
 			String replace = correction.get(find);
 
@@ -227,8 +219,7 @@ public class Transformations {
 	private String substitute(String input, Mapper mapper) {
 		StringBuffer buffer = new StringBuffer();
 		for (String find : correction.keySet()) {
-			Pattern pattern = Pattern.compile(find, CASE_INSENSITIVE
-					| UNICODE_CASE);
+			Pattern pattern = Pattern.compile(find, CASE_INSENSITIVE | UNICODE_CASE);
 			Matcher matcher = pattern.matcher(input);
 			String replace = correction.get(find);
 
@@ -310,8 +301,7 @@ public class Transformations {
 
 	public static String chineseTranslate(String input) {
 		StringBuffer newStr = new StringBuffer("");
-		java.util.regex.Pattern p = java.util.regex.Pattern
-				.compile("[\u4E00-\u9FA5]");
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile("[\u4E00-\u9FA5]");
 		char[] chars = new char[1];
 		Matcher m;
 		for (int i = 0; i < input.length(); i++) {

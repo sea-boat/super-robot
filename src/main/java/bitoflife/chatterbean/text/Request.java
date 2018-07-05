@@ -49,8 +49,7 @@ public class Request {
 			return false;
 
 		Request compared = (Request) obj;
-		return original.equals(compared.original)
-				&& Arrays.equals(sentences, compared.sentences);
+		return original.equals(compared.original) && Arrays.equals(sentences, compared.sentences);
 	}
 
 	public Sentence lastSentence(int index) {
@@ -64,12 +63,10 @@ public class Request {
 		else
 			tempOriginal = original.replace(" ", "#");
 		StringBuffer output = new StringBuffer("");
-		output.append("-----------Request-----------\n").append(
-				"[original]:" + tempOriginal + "\n");
+		output.append("-----------Request-----------\n").append("[original]:" + tempOriginal + "\n");
 		if (sentences != null)
 			for (int i = 0; i < sentences.length; i++) {
-				output.append("[sentence " + i + "]:" + sentences[i].toString()
-						+ "\n");
+				output.append("[sentence " + i + "]:" + sentences[i].toString() + "\n");
 			}
 		else
 			output.append("[sentence]:null");

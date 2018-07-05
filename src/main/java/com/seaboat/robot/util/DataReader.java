@@ -18,40 +18,40 @@ import java.util.List;
  */
 public class DataReader {
 
-  public static String readContent(String file) {
-    StringBuilder lines = new StringBuilder();
-    BufferedReader bufferedReader;
-    try {
-      bufferedReader = new BufferedReader(new FileReader(file));
-      String line;
-      while ((line = bufferedReader.readLine()) != null) {
-        lines.append(line);
-      }
-      bufferedReader.close();
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return lines.toString();
-  }
+	public static String readContent(String file) {
+		StringBuilder lines = new StringBuilder();
+		BufferedReader bufferedReader;
+		try {
+			bufferedReader = new BufferedReader(new FileReader(file));
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				lines.append(line);
+			}
+			bufferedReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lines.toString();
+	}
 
-  public static List<String> readContentList(String file) {
-    List<String> lines = new ArrayList<String>();
-    BufferedReader bufferedReader;
-    try {
-      bufferedReader = new BufferedReader(new FileReader(file));
-      String line;
-      while ((line = bufferedReader.readLine()) != null) {
-        lines.add(line);
-      }
-      bufferedReader.close();
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return lines;
-  }
+	public static List<String> readContentList(String file) {
+		List<String> lines = new ArrayList<String>();
+		BufferedReader bufferedReader;
+		try {
+			bufferedReader = new BufferedReader(new FileReader(file));
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				lines.add(line);
+			}
+			bufferedReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lines;
+	}
 
 }

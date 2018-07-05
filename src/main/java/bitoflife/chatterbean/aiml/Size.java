@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -17,33 +17,26 @@ package bitoflife.chatterbean.aiml;
 import org.xml.sax.Attributes;
 import bitoflife.chatterbean.Match;
 
-public class Size extends TemplateElement
-{
-  /*
-  Constructors
-  */
+public class Size extends TemplateElement {
+	/*
+	Constructors
+	*/
 
-  public Size()
-  {
-  }
+	public Size() {
+	}
 
-  public Size(Attributes attributes)
-  {
-  }
+	public Size(Attributes attributes) {
+	}
 
-  /*
-  Methods
-  */
+	/*
+	Methods
+	*/
 
-  public String process(Match match)
-  {
-    try
-    {
-      return Integer.toString(match.getCallback().getGraphmaster().size());
-    }
-    catch (NullPointerException e)
-    {
-      return "0";
-    }
-  }
+	public String process(Match match) {
+		try {
+			return Integer.toString(match.getCallback().getGraphmaster().size());
+		} catch (NullPointerException e) {
+			return "0";
+		}
+	}
 }

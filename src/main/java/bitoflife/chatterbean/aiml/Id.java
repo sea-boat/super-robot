@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -19,42 +19,37 @@ import bitoflife.chatterbean.AliceBot;
 import bitoflife.chatterbean.Context;
 import bitoflife.chatterbean.Match;
 
-public class Id extends TemplateElement
-{
-  /*
-  Constructors
-  */
+public class Id extends TemplateElement {
+	/*
+	Constructors
+	*/
 
-  public Id()
-  {
-  }
+	public Id() {
+	}
 
-  public Id(Attributes attributes)
-  {
-  }
+	public Id(Attributes attributes) {
+	}
 
-  /*
-  Methods
-  */
-  
-  public boolean equals(Object obj)
-  {
-    if (!super.equals(obj))
-      return false;
-    else
-      return toString().equals(obj.toString());
-  }
-  
-  public int hashCode()
-  {
-    return process(null).hashCode();
-  }
+	/*
+	Methods
+	*/
 
-  public String process(Match match)
-  {
-    if (match == null) return "unknown";
-    AliceBot bot = match.getCallback();
-    Context context = bot.getContext();
-    return context.id();
-  }
+	public boolean equals(Object obj) {
+		if (!super.equals(obj))
+			return false;
+		else
+			return toString().equals(obj.toString());
+	}
+
+	public int hashCode() {
+		return process(null).hashCode();
+	}
+
+	public String process(Match match) {
+		if (match == null)
+			return "unknown";
+		AliceBot bot = match.getCallback();
+		Context context = bot.getContext();
+		return context.id();
+	}
 }

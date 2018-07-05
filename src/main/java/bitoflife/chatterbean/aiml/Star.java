@@ -20,7 +20,6 @@ import org.xml.sax.Attributes;
 
 import bitoflife.chatterbean.Match;
 
-
 public class Star extends TemplateElement {
 	/*
 	 * Attributes

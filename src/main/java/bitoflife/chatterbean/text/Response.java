@@ -14,48 +14,38 @@ You should have received a copy of the GNU General Public License along with Cha
 
 package bitoflife.chatterbean.text;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+public class Response extends Request {
+	/*
+	Constructor
+	*/
 
-public class Response extends Request
-{
-  /*
-  Constructor
-  */
+	public Response() {
+		super();
+	}
 
-  public Response()
-  {
-    super();
-  }
+	public Response(String original) {
+		super(original);
+	}
 
-  public Response(String original)
-  {
-    super(original);
-  }
-  
-  public Response(String original, Sentence... sentences)
-  {
-    super(original, sentences);
-  }
+	public Response(String original, Sentence... sentences) {
+		super(original, sentences);
+	}
 
-  /*
-  Methods
-  */
+	/*
+	Methods
+	*/
 
-  public void append(String output)
-  {
-    StringBuilder builder = new StringBuilder();
-    String original = getOriginal();
-    if (original != null && original.length() > 1)
-    {
-      builder.append(original);
-      int index = builder.length() - 1;
-      if (builder.charAt(index) != ' ')
-        builder.append(' ');
-    }
-    
-    builder.append(output);
-    setOriginal(builder.toString());
-  }
+	public void append(String output) {
+		StringBuilder builder = new StringBuilder();
+		String original = getOriginal();
+		if (original != null && original.length() > 1) {
+			builder.append(original);
+			int index = builder.length() - 1;
+			if (builder.charAt(index) != ' ')
+				builder.append(' ');
+		}
+
+		builder.append(output);
+		setOriginal(builder.toString());
+	}
 }

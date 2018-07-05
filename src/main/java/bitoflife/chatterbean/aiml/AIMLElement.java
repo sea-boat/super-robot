@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@bol.com.br
 ICQ: 2490863
 
@@ -16,13 +16,12 @@ package bitoflife.chatterbean.aiml;
 
 import java.util.List;
 
-public interface AIMLElement
-{
-  /*
-  Method Section
-  */
+public interface AIMLElement {
+	/*
+	Method Section
+	*/
 
-  public void appendChild(AIMLElement child);
+	public void appendChild(AIMLElement child);
 
-  public void appendChildren(List<AIMLElement> children);
+	public void appendChildren(List<AIMLElement> children);
 }

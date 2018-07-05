@@ -16,8 +16,7 @@ package bitoflife.chatterbean;
 
 import java.beans.PropertyChangeListener;
 
-public abstract class ContextPropertyChangeListener implements
-		PropertyChangeListener {
+public abstract class ContextPropertyChangeListener implements PropertyChangeListener {
 	/*
 	 * Attribute Section
 	 */

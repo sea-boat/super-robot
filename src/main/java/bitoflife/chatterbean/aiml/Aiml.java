@@ -26,8 +26,7 @@ public class Aiml implements AIMLElement {
 	 */
 
 	private final Topic defaultTopic = new Topic("*");
-	private final List<Topic> topics = new LinkedList<Topic>(
-			Arrays.asList(defaultTopic));
+	private final List<Topic> topics = new LinkedList<Topic>(Arrays.asList(defaultTopic));
 
 	private final List<Category> categories = new LinkedList<Category>();
 
@@ -56,7 +55,7 @@ public class Aiml implements AIMLElement {
 			defaultTopic.appendChild(category);
 			categories.add(category);
 		} else {
-			Topic topic = (Topic) child; 
+			Topic topic = (Topic) child;
 			topics.add(topic);
 			categories.addAll(topic.getCategories());
 		}

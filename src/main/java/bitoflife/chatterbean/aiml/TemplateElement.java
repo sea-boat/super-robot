@@ -38,7 +38,7 @@ public class TemplateElement implements AIMLElement {
 			if (child instanceof AIMLElement)
 				children.add((TemplateElement) child);
 			else
-				children.add(new Text(child.toString())); 
+				children.add(new Text(child.toString()));
 		}
 	}
 
@@ -68,7 +68,7 @@ public class TemplateElement implements AIMLElement {
 	}
 
 	public int hashCode() {
-		return children.hashCode(); 
+		return children.hashCode();
 	}
 
 	public String process(Match match) {
@@ -85,7 +85,7 @@ public class TemplateElement implements AIMLElement {
 	 */
 
 	public TemplateElement[] getChildren() {
-		return children.toArray(TEMPLATE_ELEMENT_ARRAY); 
+		return children.toArray(TEMPLATE_ELEMENT_ARRAY);
 	}
 
 	public TemplateElement getChildByIndex(int index) {

@@ -43,14 +43,13 @@ public class SentenceSplitter {
 	 * Constructor Section
 	 */
 
-	public SentenceSplitter(Map<String, String> protection,
-			List<String> splitters) {
+	public SentenceSplitter(Map<String, String> protection, List<String> splitters) {
 		this.protection = protection;
 		this.splitters = splitters;
 
 		String splitPattern = "\\s*(";
 		for (Iterator<String> i = splitters.iterator();;) {
-			splitPattern += escapeRegex(i.next()); 
+			splitPattern += escapeRegex(i.next());
 			if (!i.hasNext())
 				break;
 			splitPattern += "|";
@@ -66,8 +65,7 @@ public class SentenceSplitter {
 
 	private String protect(String input) {
 		for (String find : protection.keySet()) {
-			Pattern pattern = Pattern.compile(find, CASE_INSENSITIVE
-					| UNICODE_CASE);
+			Pattern pattern = Pattern.compile(find, CASE_INSENSITIVE | UNICODE_CASE);
 			Matcher matcher = pattern.matcher(input);
 			String replace = protection.get(find);
 			input = matcher.replaceAll(replace);
@@ -87,8 +85,7 @@ public class SentenceSplitter {
 
 		while (matcher.find()) {
 			int endIndex = matcher.start();
-			String sentence = original.substring(beginIndex, endIndex)
-					+ matcher.group(1);
+			String sentence = original.substring(beginIndex, endIndex) + matcher.group(1);
 			if (!splitters.contains(sentence.trim()))
 				sentences.add(sentence);
 			beginIndex = endIndex + matcher.group().length();

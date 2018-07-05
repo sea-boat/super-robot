@@ -40,8 +40,6 @@ public class SuperEngine implements Engine {
 
 	private SessionManager manager;
 
-	private String word2vecPath;
-
 	private Matcher matcher;
 
 	private List<String> qaFileList;
@@ -59,15 +57,11 @@ public class SuperEngine implements Engine {
 	}
 
 	public void initMatcher() {
-		matcher = new DefaultMatcher(word2vecPath);
+		matcher = new DefaultMatcher();
 		matcher.initMatcher(qaFileList);
 	}
 
-	public void setWord2vecPath(String word2vecPath) {
-		this.word2vecPath = word2vecPath;
-	}
-
-	public void setQaFileList(List list) {
+	public void setQaFileList(List<String> list) {
 		this.qaFileList = list;
 	}
 
@@ -108,7 +102,7 @@ public class SuperEngine implements Engine {
 					searcher.searchEnding(path + "/resources/corpus/ending/"));
 
 			for (QA qa : DAO4H2.getAllQA())
-				addQA(qa);
+				addQAtoMemory(qa);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -121,6 +115,11 @@ public class SuperEngine implements Engine {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void addQAtoMemory(QA qa) {
+		Category c = new Category(new Pattern(qa.getPattern()), new Template(qa.getTemplate()));
+		bot.getGraphmaster().append(c);
 	}
 
 	public String respond(String input) {
@@ -138,7 +137,7 @@ public class SuperEngine implements Engine {
 		String response = bot.respond(input);
 		if (response != null && !response.equals("#"))
 			return response;
-		SuperContext context = manager.getContext(sessionId);
+		//		SuperContext context = manager.getContext(sessionId);
 		String intent = "khala";
 		System.out.println(input);
 		response = matcher.match(intent, input);

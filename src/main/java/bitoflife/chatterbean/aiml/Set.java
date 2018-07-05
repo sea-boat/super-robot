@@ -55,7 +55,7 @@ public class Set extends TemplateElement {
 
 	public String process(Match match) {
 		String output = super.process(match);
-		if (match == null) 
+		if (match == null)
 			output = "<set name=\"" + name + "\">" + output + "</set>";
 		else {
 			AliceBot bot = match.getCallback();

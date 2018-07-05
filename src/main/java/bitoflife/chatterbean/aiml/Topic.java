@@ -33,8 +33,7 @@ public class Topic implements AIMLElement {
 	 * Constructor Section
 	 */
 
-	public Topic(Attributes attributes)
-	{
+	public Topic(Attributes attributes) {
 		name(attributes.getValue(0));
 	}
 
@@ -71,8 +70,7 @@ public class Topic implements AIMLElement {
 			return false;
 		else {
 			Topic compared = (Topic) obj;
-			return (name.equals(compared.name) && categories
-					.equals(compared.categories));
+			return (name.equals(compared.name) && categories.equals(compared.categories));
 		}
 	}
 

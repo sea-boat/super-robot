@@ -19,6 +19,11 @@ package bitoflife.chatterbean;
  */
 public class ChatterBeanException extends RuntimeException {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2952649086058514394L;
+
+	/**
 	 * Version class identifier for the serialization engine. Matches the number
 	 * of the last revision where the class was created / modified.
 	 */

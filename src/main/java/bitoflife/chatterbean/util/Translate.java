@@ -6,8 +6,7 @@ public class Translate {
 	public static String translateString(String input) {
 		StringBuffer newStr = new StringBuffer("");
 		String strTemp = "";
-		java.util.regex.Pattern p = java.util.regex.Pattern
-				.compile("[A-Za-z0-9\\s]");
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile("[A-Za-z0-9\\s]");
 		char[] chars = new char[1];
 		Matcher m;
 		for (int i = 0; i < input.length(); i++) {

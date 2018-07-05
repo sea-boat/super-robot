@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -16,15 +16,13 @@ package bitoflife.chatterbean.aiml;
 
 import org.xml.sax.Attributes;
 
-public class Sr extends Srai
-{
-  /*
-  Constructors
-  */
+public class Sr extends Srai {
+	/*
+	Constructors
+	*/
 
-  public Sr(Attributes attributes)
-  {
-    super(attributes);
-    setChildren(new TemplateElement[] {new Star(attributes)});
-  }  
+	public Sr(Attributes attributes) {
+		super(attributes);
+		setChildren(new TemplateElement[] { new Star(attributes) });
+	}
 }

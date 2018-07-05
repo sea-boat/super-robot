@@ -55,9 +55,7 @@ public class AIMLHandler extends DefaultHandler {
 	 */
 
 	private String buildClassName(String tag) {
-		return "bitoflife.chatterbean.aiml."
-				+ tag.substring(0, 1).toUpperCase()
-				+ tag.substring(1).toLowerCase();
+		return "bitoflife.chatterbean.aiml." + tag.substring(0, 1).toUpperCase() + tag.substring(1).toLowerCase();
 	}
 
 	private void pushTextNode() {
@@ -72,8 +70,7 @@ public class AIMLHandler extends DefaultHandler {
 
 	private void updateIgnoreWhitespace(Attributes attributes) {
 		try {
-			ignoreWhitespace = !"preserve".equals(attributes
-					.getValue("xml:space"));
+			ignoreWhitespace = !"preserve".equals(attributes.getValue("xml:space"));
 		} catch (NullPointerException e) {
 		}
 	}
@@ -92,24 +89,22 @@ public class AIMLHandler extends DefaultHandler {
 	 * Event Handling Section
 	 */
 
-	public void startElement(String namespace, String name, String qname,
-			Attributes attributes) throws SAXException {
+	public void startElement(String namespace, String name, String qname, Attributes attributes) throws SAXException {
 
 		if (ignored.contains(qname))
 			return;
 		updateIgnoreWhitespace(attributes);
 		pushTextNode();
 		String className = buildClassName(qname);
-		
+
 		try {
-			Class tagClass = Class.forName(className);
-			Constructor constructor = tagClass.getConstructor(Attributes.class);
+			Class<?> tagClass = Class.forName(className);
+			Constructor<?> constructor = tagClass.getConstructor(Attributes.class);
 			Object tag = constructor.newInstance(attributes);
 			stack.push(tag);
-			} catch (Exception e) {
-				throw new RuntimeException("Cannot instantiate class "
-						+ className, e);
-			}
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot instantiate class " + className, e);
+		}
 	}
 
 	public void characters(char[] chars, int start, int length) {
@@ -117,8 +112,7 @@ public class AIMLHandler extends DefaultHandler {
 		text.append(chars, start, length);
 	}
 
-	public void endElement(String namespace, String name, String qname)
-			throws SAXException {
+	public void endElement(String namespace, String name, String qname) throws SAXException {
 
 		if (ignored.contains(qname))
 			return;
@@ -128,8 +122,7 @@ public class AIMLHandler extends DefaultHandler {
 		for (List<AIMLElement> children = new LinkedList<AIMLElement>();;) {
 			Object tag = stack.pop();
 			if (tag == null)
-				throw new SAXException("No matching start tag found for "
-						+ qname);
+				throw new SAXException("No matching start tag found for " + qname);
 			else if (!className.equals(tag.getClass().getName()))
 				children.add(0, (AIMLElement) tag);
 			else
@@ -139,12 +132,8 @@ public class AIMLHandler extends DefaultHandler {
 					stack.push(tag);
 					return;
 				} catch (ClassCastException e) {
-					throw new RuntimeException(
-							"Tag <"
-									+ qname
-									+ "> used as node, but implementing "
-									+ "class does not implement the AIMLElement interface",
-							e);
+					throw new RuntimeException("Tag <" + qname + "> used as node, but implementing "
+							+ "class does not implement the AIMLElement interface", e);
 				} catch (Exception e) {
 					throw new SAXException(e);
 				}

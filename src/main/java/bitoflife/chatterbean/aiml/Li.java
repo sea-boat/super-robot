@@ -47,12 +47,10 @@ public class Li extends TemplateElement {
 	 */
 
 	private boolean isEquals(Object comparing, Object compared) {
-		return (comparing == null ? compared == null : comparing
-				.equals(compared));
+		return (comparing == null ? compared == null : comparing.equals(compared));
 	}
 
-	public boolean equals(Object obj) 
-	{
+	public boolean equals(Object obj) {
 		if (!super.equals(obj))
 			return false;
 		Li compared = (Li) obj;

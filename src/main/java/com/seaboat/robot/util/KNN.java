@@ -2,12 +2,9 @@ package com.seaboat.robot.util;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class KNN {
 
@@ -77,8 +74,7 @@ public class KNN {
 		}
 		for (int i = 0; i <= 9; i++) {
 			for (int j = 0; j < 100; j++) {
-				int temp_arr[] = readArray(path+"/TrainingData/" + i + "_" + j
-						+ ".txt");
+				int temp_arr[] = readArray(path + "/TrainingData/" + i + "_" + j + ".txt");
 				double temp_dis = calDistance(array, temp_arr);
 				for (int k = 0; k < K; k++) {
 					if (temp_dis < dis[k]) {

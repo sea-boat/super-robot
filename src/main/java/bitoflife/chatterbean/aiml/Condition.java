@@ -58,8 +58,7 @@ public class Condition extends TemplateElement {
 			if (comparing == null)
 				return li;
 
-			String compared = (String) context.property("predicate."
-					+ li.getName());
+			String compared = (String) context.property("predicate." + li.getName());
 			if ("".equals(compared))
 				continue;
 
@@ -76,7 +75,7 @@ public class Condition extends TemplateElement {
 		for (TemplateElement child : getChildren()) {
 			Li li = (Li) child;
 			String comparing = li.getValue();
-			if (comparing == null) 
+			if (comparing == null)
 				return li;
 
 			comparing = transformations.normalization(comparing);

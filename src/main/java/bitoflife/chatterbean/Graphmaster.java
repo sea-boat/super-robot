@@ -29,7 +29,6 @@ public class Graphmaster {
 	private final Map<String, Graphmaster> children = new HashMap<String, Graphmaster>();
 
 	private int size = 0;
-	private Graphmaster parent;
 	private Category category;
 	private String name; // The name of a node is the pattern element it
 							// represents.
@@ -74,7 +73,6 @@ public class Graphmaster {
 
 	private void appendChild(Graphmaster child) {
 		children.put(child.name, child);
-		child.parent = this;
 	}
 
 	/**
@@ -92,8 +90,7 @@ public class Graphmaster {
 	 * </p>
 	 */
 	private Graphmaster[] children(String name) {
-		return new Graphmaster[] { children.get("_"), children.get(name),
-				children.get("*") };
+		return new Graphmaster[] { children.get("_"), children.get(name), children.get("*") };
 	}
 
 	private boolean isWildcard() {
@@ -118,8 +115,7 @@ public class Graphmaster {
 		Graphmaster[] nodes = children(match.getMatchPathByIndex(nextIndex));
 		for (int i = 0, n = nodes.length; i < n; i++) {
 
-			Category category = (nodes[i] != null ? nodes[i].match(match,
-					nextIndex) : null);
+			Category category = (nodes[i] != null ? nodes[i].match(match, nextIndex) : null);
 
 			if (category != null)
 				return category;

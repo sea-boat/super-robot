@@ -16,9 +16,9 @@ public class SessionManager {
 
 	private static SessionManager instance = null;
 
-	private Map sessionMap = Collections.synchronizedMap(new HashMap());
+	private Map<String, SuperContext> sessionMap = Collections.synchronizedMap(new HashMap<String, SuperContext>());
 
-	private Map sessionActiveMap = Collections.synchronizedMap(new HashMap());
+	private Map<String, Integer> sessionActiveMap = Collections.synchronizedMap(new HashMap<String, Integer>());
 
 	private static int timeout = 20;
 
@@ -26,8 +26,7 @@ public class SessionManager {
 		super();
 		Timer sessionClearTimer = new Timer(true);
 		int oneMin = 60000;
-		sessionClearTimer.schedule(new SessionCleanerTimerTask(), oneMin,
-				oneMin);
+		sessionClearTimer.schedule(new SessionCleanerTimerTask(), oneMin, oneMin);
 
 	}
 
@@ -53,7 +52,7 @@ public class SessionManager {
 	 * 
 	 * @return
 	 */
-	public Set getSessionIdSet() {
+	public Set<?> getSessionIdSet() {
 		return Collections.unmodifiableSet(sessionMap.entrySet());
 	}
 
@@ -98,6 +97,7 @@ public class SessionManager {
 		return sessionId;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void sessionVisit(String sessionId) {
 		if (!sessionMap.containsKey(sessionId)) {
 			return;
@@ -107,10 +107,11 @@ public class SessionManager {
 
 	protected class SessionCleanerTimerTask extends TimerTask {
 
+		@SuppressWarnings("deprecation")
 		public void run() {
-			Set idSet = sessionActiveMap.keySet();
-			Iterator idIt = idSet.iterator();
-			List invalidIdList = new ArrayList();
+			Set<String> idSet = sessionActiveMap.keySet();
+			Iterator<String> idIt = idSet.iterator();
+			List<String> invalidIdList = new ArrayList<String>();
 			while (idIt.hasNext()) {
 				String id = (String) idIt.next();
 				Integer lastSpan = (Integer) sessionActiveMap.get(id);
@@ -121,7 +122,7 @@ public class SessionManager {
 			}
 
 			for (int i = 0, n = invalidIdList.size(); i < n; i++) {
-				String id = (String) invalidIdList.get(i);
+				String id = invalidIdList.get(i);
 				removeSession(id);
 				sessionActiveMap.remove(id);
 			}

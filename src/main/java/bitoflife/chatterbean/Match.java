@@ -28,7 +28,7 @@ import bitoflife.chatterbean.text.Sentence;
  * Contains information about a match operation, which is needed by the classes
  * of the <code>bitoflife.chatterbean.aiml</code> to produce a proper response.
  */
-public class Match implements Serializable { 
+public class Match implements Serializable {
 	/*
 	 * Inner Classes
 	 */
@@ -74,14 +74,12 @@ public class Match implements Serializable {
 	public Match() {
 	}
 
-	public Match(AliceBot callback, Sentence input, Sentence that,
-			Sentence topic) {
+	public Match(AliceBot callback, Sentence input, Sentence that, Sentence topic) {
 		this.callback = callback;
 		this.input = input;
 		this.that = that;
 		this.topic = topic;
-		setUpMatchPath(input.getSplittedOfSentence(),
-				that.getSplittedOfSentence(), topic.getSplittedOfSentence());
+		setUpMatchPath(input.getSplittedOfSentence(), that.getSplittedOfSentence(), topic.getSplittedOfSentence());
 	}
 
 	public Match(Sentence input) {
@@ -92,13 +90,12 @@ public class Match implements Serializable {
 	 * Methods
 	 */
 
-	private void appendWildcard(List<String> section, Sentence source,
-			int beginIndex, int endIndex) {
+	private void appendWildcard(List<String> section, Sentence source, int beginIndex, int endIndex) {
 		if (beginIndex == endIndex) {
 			section.add(0, "");
 		} else
 			try {
-				section.add(0, source.original(beginIndex, endIndex)); 
+				section.add(0, source.original(beginIndex, endIndex));
 			} catch (Exception e) {
 				// throw new RuntimeException("Source: {\"" +
 				// source.getOriginal() + "\", \"" + source.getNormalized() +
@@ -122,8 +119,7 @@ public class Match implements Serializable {
 	public void appendWildcard(int beginIndex, int endIndex) {
 		int inputLength = input.length();
 		if (beginIndex <= inputLength) {
-			appendWildcard(sections.get(Section.PATTERN), input, beginIndex,
-					endIndex);
+			appendWildcard(sections.get(Section.PATTERN), input, beginIndex, endIndex);
 			return;
 		}
 
@@ -132,8 +128,7 @@ public class Match implements Serializable {
 
 		int thatLength = that.length();
 		if (beginIndex <= thatLength) {
-			appendWildcard(sections.get(Section.THAT), that, beginIndex,
-					endIndex);
+			appendWildcard(sections.get(Section.THAT), that, beginIndex, endIndex);
 			return;
 		}
 
@@ -142,8 +137,7 @@ public class Match implements Serializable {
 
 		int topicLength = topic.length();
 		if (beginIndex < topicLength)
-			appendWildcard(sections.get(Section.TOPIC), topic, beginIndex,
-					endIndex);
+			appendWildcard(sections.get(Section.TOPIC), topic, beginIndex, endIndex);
 	}
 
 	/**

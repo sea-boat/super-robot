@@ -45,8 +45,7 @@ public class BeanshellInterpreter implements Interpreter {
 		}
 	}
 
-	public void variable(String name, Object value)
-			throws InterpretingException {
+	public void variable(String name, Object value) throws InterpretingException {
 		try {
 			interpreter.set(name, value);
 		} catch (Exception e) {

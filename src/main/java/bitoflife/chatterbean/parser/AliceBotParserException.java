@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -14,20 +14,18 @@ You should have received a copy of the GNU General Public License along with Cha
 
 package bitoflife.chatterbean.parser;
 
-public class AliceBotParserException extends Exception
-{
-  /*
-  Attribute Section
-  */
-  
-  private static final long serialVersionUID = 7L;
+public class AliceBotParserException extends Exception {
+	/*
+	Attribute Section
+	*/
 
-  /*
-  Constructor Section
-  */
-  
-  public AliceBotParserException(Exception e)
-  {
-    super(e);
-  }
+	private static final long serialVersionUID = 7L;
+
+	/*
+	Constructor Section
+	*/
+
+	public AliceBotParserException(Exception e) {
+		super(e);
+	}
 }

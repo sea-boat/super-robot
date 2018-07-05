@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -25,88 +25,74 @@ import java.io.PrintWriter;
 /**
 Synchronized linear integer generator.
 */
-public class Sequence
-{
-  /*
-  Attributes
-  */
-  
-  private File backup, file;
-  
-  /*
-  Constructor
-  */
-  
-  public Sequence(File file)
-  {
-    this.file = file;
-    backup = new File(file.getAbsolutePath() + ".backup");
-  }
+public class Sequence {
+	/*
+	Attributes
+	*/
 
-  public Sequence(String path)
-  {
-    file = new File(path);
-    backup = new File(path + ".backup");
-  }
-  
-  /*
-  Methods
-  */
-  
-  private long loadNext(File file) throws IOException
-  {
-    String line = "";
+	private File backup, file;
 
-    try
-    {
-      BufferedReader reader = new BufferedReader(new FileReader(file));
+	/*
+	Constructor
+	*/
 
-      line = reader.readLine();
+	public Sequence(File file) {
+		this.file = file;
+		backup = new File(file.getAbsolutePath() + ".backup");
+	}
 
-      long next = Long.parseLong(line);
+	public Sequence(String path) {
+		file = new File(path);
+		backup = new File(path + ".backup");
+	}
 
-      reader.close();
+	/*
+	Methods
+	*/
 
-      return next;
-    }
-    catch (NumberFormatException e)
-    {
-      throw new IOException("Illegal value on persistence file: " + line);
-    }
-    catch (FileNotFoundException e)
-    {
-      return 0;
-    }
-  }
-  
-  private void saveNext(File file, long next) throws IOException
-  {
-    PrintWriter writer = new PrintWriter(new FileWriter(file, false), true);
+	private long loadNext(File file) throws IOException {
+		String line = "";
 
-    writer.println(Long.toString(next + 1));
-    
-    writer.close();
-  }
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
 
-  /**
-  Return the next number in the sequence.
-  */
-  public synchronized long getNext() throws IOException
-  {
-    long next = 0;
+			line = reader.readLine();
 
-    try
-    {
-      next = loadNext(file.exists() ? file : backup);
-    }
-    catch (IOException e)
-    {
-      next = loadNext(backup);
-    }
+			long next = Long.parseLong(line);
 
-    saveNext(backup, next);
-    saveNext(file, next);
+			reader.close();
 
-    return next;
-  }
+			return next;
+		} catch (NumberFormatException e) {
+			throw new IOException("Illegal value on persistence file: " + line);
+		} catch (FileNotFoundException e) {
+			return 0;
+		}
+	}
+
+	private void saveNext(File file, long next) throws IOException {
+		PrintWriter writer = new PrintWriter(new FileWriter(file, false), true);
+
+		writer.println(Long.toString(next + 1));
+
+		writer.close();
+	}
+
+	/**
+	Return the next number in the sequence.
+	*/
+	public synchronized long getNext() throws IOException {
+		long next = 0;
+
+		try {
+			next = loadNext(file.exists() ? file : backup);
+		} catch (IOException e) {
+			next = loadNext(backup);
+		}
+
+		saveNext(backup, next);
+		saveNext(file, next);
+
+		return next;
+	}
 }

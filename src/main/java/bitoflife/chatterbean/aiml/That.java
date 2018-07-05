@@ -39,7 +39,7 @@ public class That extends TemplateElement {
 	 */
 
 	public That(Attributes attributes) {
-		String value = attributes.getValue(0); 
+		String value = attributes.getValue(0);
 		if (value == null)
 			return;
 
@@ -99,8 +99,7 @@ public class That extends TemplateElement {
 
 	public String toString() {
 		if (children().size() == 0)
-			return "<that index=\"" + responseIndex + ", " + sentenceIndex
-					+ "\"/>";
+			return "<that index=\"" + responseIndex + ", " + sentenceIndex + "\"/>";
 		else {
 			StringBuilder builder = new StringBuilder("<that>");
 			for (TemplateElement element : children())

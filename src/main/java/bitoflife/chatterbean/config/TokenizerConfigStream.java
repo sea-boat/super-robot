@@ -27,8 +27,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import bitoflife.chatterbean.text.Tokenizer;
 
-public class TokenizerConfigStream extends DefaultHandler implements
-		TokenizerConfig {
+public class TokenizerConfigStream extends DefaultHandler implements TokenizerConfig {
 	/*
 	 * Attribute Section
 	 */
@@ -39,8 +38,6 @@ public class TokenizerConfigStream extends DefaultHandler implements
 
 	// 这里把splitters列表长度设置成6，那如果splitters.xml中超过6个分割符不就无效了吗？？？
 	private final List<String> splitters = new ArrayList<String>(6);
-
-	private boolean ignoreWhitespace;
 
 	/*
 	 * Constructor Section
@@ -71,8 +68,7 @@ public class TokenizerConfigStream extends DefaultHandler implements
 	 * Event Section
 	 */
 
-	public void startElement(String namespace, String name, String qname,
-			Attributes attributes) throws SAXException {
+	public void startElement(String namespace, String name, String qname, Attributes attributes) throws SAXException {
 		if ("splitter".equals(qname))
 			splitters.add(attributes.getValue(0)); // 这里只负责把分隔符记录下来，却忽略了分隔符的类型（sentence,word）
 	}
@@ -88,7 +84,6 @@ public class TokenizerConfigStream extends DefaultHandler implements
 	public void parse(InputStream input) throws ConfigException {
 		try {
 			splitters.clear();
-			ignoreWhitespace = true;
 			parser.parse(input, this);
 		} catch (Exception e) {
 			throw new ConfigException(e);

@@ -51,8 +51,7 @@ public class Bot extends TemplateElement {
 
 	public String process(Match match) {
 		try {
-			String value = (String) match.getCallback().getContext()
-					.property("bot." + name);
+			String value = (String) match.getCallback().getContext().property("bot." + name);
 			return (value != null ? value : "");
 		} catch (NullPointerException e) {
 			return "";

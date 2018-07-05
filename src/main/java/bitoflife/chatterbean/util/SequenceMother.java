@@ -1,5 +1,5 @@
 /*
-Copyleft (C) 2005 Hélio Perroni Filho
+Copyleft (C) 2005 Hï¿½lio Perroni Filho
 xperroni@yahoo.com
 ICQ: 2490863
 
@@ -17,26 +17,23 @@ package bitoflife.chatterbean.util;
 import java.io.File;
 import bitoflife.chatterbean.util.Sequence;
 
-public class SequenceMother
-{
-  /*
-  Attributes
-  */
+public class SequenceMother {
+	/*
+	Attributes
+	*/
 
-  public static final File file = new File("Logs/sequence.txt");
+	public static final File file = new File("Logs/sequence.txt");
 
-  /*
-  Methods
-  */
+	/*
+	Methods
+	*/
 
-  public Sequence newInstance()
-  {
-      return new Sequence(file);
-  }
+	public Sequence newInstance() {
+		return new Sequence(file);
+	}
 
-  public void reset()
-  {
-    (new File(file.getPath() + ".backup")).delete();
-    file.delete();
-  }
+	public void reset() {
+		(new File(file.getPath() + ".backup")).delete();
+		file.delete();
+	}
 }

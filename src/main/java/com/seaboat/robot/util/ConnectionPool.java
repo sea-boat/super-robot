@@ -16,7 +16,7 @@ import org.h2.jdbcx.JdbcConnectionPool;
  */
 public class ConnectionPool {
 
-	static String PATH = "./resources/bot.db";
+	static String PATH = System.getProperty("user.dir") + "/resources/bot.db";
 	private static JdbcConnectionPool pool = JdbcConnectionPool.create("jdbc:h2:" + PATH, "sa", "");
 	static {
 		pool.setLoginTimeout(10000);
